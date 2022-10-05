@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('clone') {
+            steps {
+                git  url: 'https://github.com/jmstechhome19/spring3-mvc-maven-xml-hello-world.git'	
+            }
+        }
+		stage ('build') {
+			steps {
+				sh 'mvn clean package'
+				}
+						}
+	
+    	stage ('deploy') {
+			steps {
+				withCredentials([usernameColonPassword(credentialsId: 'tomcatcredentail', variable: 'tomcat')]){
+	            sh "curl -v -u $tomcat -T /var/lib/jenkins/workspace/5thpipeline/target/*.war 'http://13.233.152.213:8080/manager/text/deploy?path=/sprin3&update=true' "
+			   
+			}
+    	}	
+}
+}
+}

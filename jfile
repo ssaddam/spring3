@@ -14,7 +14,7 @@ pipeline {
 						}
 		stage ('deploy') {
 			steps {
-				sh "curl -v -u admin:adminadmin -T /var/lib/jenkins/workspace/3rdpipe/target/*.war 'http://13.233.152.213/:8080/manager/text/deploy?path=/sprin3&update=true' "
+				sh "curl -v -u admin:adminadmin -T /var/lib/jenkins/workspace/3rdpipe/target/*.war 'http://13.233.152.213:8080/manager/text/deploy?path=/sprin3&update=true' "
 			
     }				
 		}	
